@@ -11,13 +11,9 @@ public function main() returns error? {
         accountName: accountName,
         authorizationMethod: "accessKey"
     };
-    azure_blobs:BlobClient blobClient = check new (blobServiceConfig);
+    azure_blobs:ManagementClient managementClient = check new (blobServiceConfig);
 
     io:println("List all blobs");    
-    var listBlobsResult = blobClient->listBlobs("test-blob-container");
-    if (listBlobsResult is error) {
-        io:println(listBlobsResult.toString());
-    } else {
-        io:println(listBlobsResult.toString());
-    }
+    azure_blobs:AccountInformationResult listBlobsResult = check managementClient->getAccountInformation();
+    io:println(listBlobsResult.toString());
 }
