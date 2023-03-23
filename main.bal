@@ -4,7 +4,7 @@ import ballerinax/azure_storage_service.blobs as azure_blobs;
 configurable string accessKey = ?;
 configurable string accountName = ?;
 
-public function main() {
+public function main() returns error? {
     io:println("Hello, World!");
     azure_blobs:ConnectionConfig blobServiceConfig = {
         accessKeyOrSAS: accessKey,
@@ -13,11 +13,11 @@ public function main() {
     };
     azure_blobs:BlobClient blobClient = check new (blobServiceConfig);
 
-    log:printInfo("List all blobs");    
-    var listBlobsResult = blobClient->listBlobs("sample-container");
+    io:println("List all blobs");    
+    var listBlobsResult = blobClient->listBlobs("test-blob-container");
     if (listBlobsResult is error) {
-        log:printError(listBlobsResult.toString());
+        io:println(listBlobsResult.toString());
     } else {
-        log:printInfo(listBlobsResult.toString());
+        io:println(listBlobsResult.toString());
     }
 }
