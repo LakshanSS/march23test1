@@ -1,0 +1,8 @@
+[package]
+org = "lakshan"
+name = "azuresstest1"
+version = "0.1.0"
+distribution = "2201.3.1"
+
+[build-options]
+observabilityIncluded = true
